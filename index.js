@@ -1,11 +1,14 @@
 const HuffmanTree = require('./huffman-tree');
 
-if (process.argv.length < 4) {
-  console.log('usage: node index.js [decode|encode] [number]');
+if (process.argv.length < 3) {
+  console.log('usage: node index.js [string]');
 }
 
-let operation = console.log(process.argv[2]);
-let number = console.log(process.argv[3]);
-
-let x = new HuffmanTree(process.argv.slice(3).join('').split(''));
-console.log(x.toString());
+const characterArray = process.argv.slice(2).join('').split('')
+let x = new HuffmanTree(characterArray);
+let tree = x.toString()
+console.log('generated tree', tree);
+let encoded = x.encode(characterArray.join(''));
+console.log('encoded input as', encoded);
+let decoded = x.decode(encoded);
+console.log('decoded output to ', decoded);
